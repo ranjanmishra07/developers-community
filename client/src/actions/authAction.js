@@ -2,6 +2,7 @@ import { GET_ERRORS, SET_CURRENT_USER } from './types';
 import setAuthToken from '../utils/setAuthToken'
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
+import { clearCurrentProfile } from './profileActions';
 
 export const registerUser = (userData, history) => dispatch => {
 
@@ -20,7 +21,6 @@ export const loginUser = (userData, history) => dispatch => {
         .then(res => {
             //save  to localstorage
             const { token } = res.data;
-            console.log(token);
             //set token to ls 
             localStorage.setItem('jwtToken', token);
             //set token to authheader
@@ -43,4 +43,11 @@ export const setCurrentUser = decoded => {
         type: SET_CURRENT_USER,
         payload: decoded
     }
+}
+
+export const logoutUser = () => dispatch => {
+    localStorage.removeItem('jwtToken');
+    setAuthToken(false);
+    dispatch(setCurrentUser({}));
+    dispatch(clearCurrentProfile());
 }

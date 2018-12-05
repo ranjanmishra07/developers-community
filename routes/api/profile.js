@@ -80,7 +80,7 @@ router.get("/all", (req, res) => {
         res.status(404).json(errors)
       }
       else {
-        res.json(profiles)
+        res.json(`${profiles}`);
       }
     }
     ).catch(e => res.send("invalid profile id"));
