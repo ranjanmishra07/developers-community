@@ -15,6 +15,7 @@ import Footer from './components/layout/footer';
 import Dashboard from './components/dashboard/dashboard';
 import PrivateRoute from './components/common/PrivateRoute';
 import './App.css';
+import createProfile from './components/create-profile/createProfile.js';
 
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
@@ -41,6 +42,9 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
+              <Switch>
+              <PrivateRoute exact path="/create-profile" component={createProfile} />
               </Switch>
             </div>
             <Footer />
