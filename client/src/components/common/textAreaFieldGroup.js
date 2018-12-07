@@ -1,7 +1,7 @@
 import React from 'react'
 import {PropTypes} from 'prop-types';
 import classnames from 'classnames';
-function TextAreaGroup(props) {
+function TextAreaFieldGroup(props) {
   const {name,value,error,placeholder,info,onChange}=props;
   return (
     <div className="form-group">
@@ -13,7 +13,7 @@ function TextAreaGroup(props) {
   </div>
   )
 }
-TextAreaGroup.propTypes={
+TextAreaFieldGroup.propTypes={
   name:PropTypes.string.isRequired,
   placeholder:PropTypes.string,
   value:PropTypes.string.isRequired,
@@ -21,4 +21,4 @@ TextAreaGroup.propTypes={
   error:PropTypes.string,
   onChange:PropTypes.func.isRequired,
 }
-export default TextAreaGroup
+export default TextAreaFieldGroup

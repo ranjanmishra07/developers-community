@@ -11,11 +11,19 @@ class Dashboard extends Component {
   render() {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
+    console.log('profile',profile);
+    const skills=profile && profile.skills;
     let dashboardcontent;
     if (profile === null || loading) {
       dashboardcontent = <Spinner />
     }else if(Object.keys(profile).length>0){
-      dashboardcontent = <h4>todo:create-profile</h4>
+      dashboardcontent = (
+        <div>
+          <h1>hello {profile.handle}</h1>
+          <p>you have following skills</p>
+          {skills.map(skill=><p>{skill}</p>)}
+        </div>
+      )
     } else {
       dashboardcontent = (
         <div>

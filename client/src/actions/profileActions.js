@@ -1,23 +1,38 @@
 import {GET_PROFILE,GET_PROFILES,PROFILE_LOADING,GET_ERRORS,CLEAR_CURRENT_PROFILE} from './types';
+import errorReducer from '../reducer/error-reducer';
 import axios from 'axios';
+
 
 export const getCurrentProfile = () => dispatch =>{
   dispatch(setProfileLoading());
   axios.get('/api/profile')
        .then(res=>{
-         console.log(res.data);
          dispatch({
            type:GET_PROFILE,
            payload:res.data
          })
        })
        .catch(err=>{
-         console.log('error is',err);
          dispatch({
            type:GET_PROFILE,
            payload:{}
          })
        })
+}
+
+export const createProfile = (profileData,history) => dispatch =>{
+   axios.post('api/profile',profileData)
+        .then(res=>{
+          console.log('res',res)
+          history.push('/dashboard')
+        })
+        .catch(err=>{
+            dispatch({
+              type:GET_ERRORS,
+              payload:err.response.data
+          })
+        }
+        )
 }
 
 export const setProfileLoading = () =>{

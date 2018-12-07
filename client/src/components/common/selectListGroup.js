@@ -1,10 +1,10 @@
 import React from 'react'
 import {PropTypes} from 'prop-types';
 import classnames from 'classnames';
-function SlectFieldGroup(props) {
+function SelectListGroup(props) {
   const {name,value,error,options,info,onChange}=props;
   const selectOptions=options.map(option=>(
-    <option key={option.label} value={option.value}>{option}</option>
+    <option key={option.label} value={option.value}>{option.label}</option>
   ))
   return (
     <div className="form-group">
@@ -19,7 +19,7 @@ function SlectFieldGroup(props) {
   </div>
   )
 }
-SlectFieldGroup.propTypes={
+SelectListGroup.propTypes={
   name:PropTypes.string.isRequired,
   value:PropTypes.string.isRequired,
   info:PropTypes.string,
@@ -28,4 +28,4 @@ SlectFieldGroup.propTypes={
   options:PropTypes.array.isRequired,
 }
 
-export default SlectFieldGroup
+export default SelectListGroup

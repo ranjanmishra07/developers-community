@@ -15,7 +15,7 @@ import Footer from './components/layout/footer';
 import Dashboard from './components/dashboard/dashboard';
 import PrivateRoute from './components/common/PrivateRoute';
 import './App.css';
-import createProfile from './components/create-profile/createProfile.js';
+import createProfile from './components/create-profile/createProfile';
 
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);

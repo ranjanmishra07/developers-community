@@ -135,7 +135,7 @@ router.post("/", passport.authenticate('jwt', { session: false }), (req, res) =>
       Profile.findOne({ handle: profileFields.handle }).then(profile => {
         if (profile) {
           errors.handle = "handle already exists with that profile"
-          res.status(400).json(errors);
+          res.json(errors);
         }
         //save the new profile
         new Profile(profileFields).save().then(profile => { res.json(profile) });
