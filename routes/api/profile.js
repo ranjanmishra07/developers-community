@@ -80,7 +80,7 @@ router.get("/all", (req, res) => {
         res.status(404).json(errors)
       }
       else {
-        res.json(`${profiles}`);
+        res.json(profiles);
       }
     }
     ).catch(e => res.send("invalid profile id"));
@@ -230,7 +230,7 @@ router.delete("/education/:edu_id", passport.authenticate('jwt', { session: fals
 //@route DELETE api/profile
 //@desc  delete profile and user
 //@access Private
-router.delete("/profile", passport.authenticate("jwt", { session: false }), (req, res) => {
+router.delete("/", passport.authenticate("jwt", { session: false }), (req, res) => {
   Profile.findOneAndRemove({ user: req.user.id }).then(() => {
     User.findOneAndRemove({ _id: req.user.id }).then(() => { res.send("user and profile successfully deleted") })
   })

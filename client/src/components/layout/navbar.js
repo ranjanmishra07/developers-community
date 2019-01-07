@@ -16,7 +16,7 @@ class Navbar extends Component {
       <ul className="navbar-nav ml-auto">
       <li className="nav-item">
         <a href="" onClick={this.onLogoutclick} className="nav-link">
-        <img src={user.avatar} alt={user.name} style={{width:'10%'}}></img>
+        <img src={user && user.avatar} alt={user && user.name} style={{width:'10%'}}></img>
         Logout
         </a>
       </li>

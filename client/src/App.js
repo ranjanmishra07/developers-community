@@ -6,7 +6,7 @@ import store from './store.js';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authAction';
-import { clearCurrentProfile } from './actions/profileActions';
+import { clearCurrentProfile, addExperience } from './actions/profileActions';
 import Navbar from './components/layout/navbar';
 import Register from './components/auth/register';
 import Login from './components/auth/login';
@@ -15,7 +15,12 @@ import Footer from './components/layout/footer';
 import Dashboard from './components/dashboard/dashboard';
 import PrivateRoute from './components/common/PrivateRoute';
 import './App.css';
-import createProfile from './components/create-profile/createProfile';
+import CreateProfile from './components/create-profile/createProfile';
+import EditProfile from './components/editProfile/editProfile.js';
+import AddExperience from './components/addCredentials/addExperience';
+import AddEducation from './components/addCredentials/addEducation';
+import Profiles from './components/profiles/profiles.js';
+import Profile from './components/profile/profile.js';
 
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
@@ -23,9 +28,10 @@ if (localStorage.jwtToken) {
   store.dispatch(setCurrentUser(decoded));
   store.dispatch(clearCurrentProfile);
   const currenttime=Date.now() / 1000;
-  if(decoded < currenttime){
+  if(decoded.exp < currenttime){
     store.dispatch(logoutUser());
-    window.location.href('/login');
+    store.dispatch(clearCurrentProfile());
+    window.location.href='/login';
   }
 }
 
@@ -40,11 +46,22 @@ class App extends Component {
             <div className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/profiles" component={Profiles} />
+              <Route exact path="/profile/:profile" component={Profile} />
               <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
               <Switch>
-              <PrivateRoute exact path="/create-profile" component={createProfile} />
+              <PrivateRoute exact path="/create-profile" component={CreateProfile} />
+              </Switch>
+              <Switch>
+              <PrivateRoute exact path="/edit-profile" component={EditProfile} />
+              </Switch>
+              <Switch>
+              <PrivateRoute exact path="/add-experience" component={AddExperience} />
+              </Switch>
+              <Switch>
+              <PrivateRoute exact path="/add-education" component={AddEducation} />
               </Switch>
             </div>
             <Footer />

@@ -40,7 +40,7 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password
     }
-    this.props.loginUser(newUser, this.state.history)
+    this.props.loginUser(newUser)
   }
   render() {
     const { errors } = this.state;

@@ -16,6 +16,10 @@ export default function(state=initialstate,action){
       return {
         ...state,loading:false,profile:action.payload
       }
+      case GET_PROFILES : 
+      return {
+        ...state,loading:false,profile:action.payload
+      }
     case CLEAR_CURRENT_PROFILE : 
       return {
         ...state,loading:false,profile:null

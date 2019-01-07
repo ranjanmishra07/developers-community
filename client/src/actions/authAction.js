@@ -26,6 +26,7 @@ export const loginUser = (userData, history) => dispatch => {
             //set token to authheader
             setAuthToken(token);
             const decoded = jwt_decode(token);
+            console.log('decoded',decoded);
             //set current user
             dispatch(setCurrentUser(decoded));
 
